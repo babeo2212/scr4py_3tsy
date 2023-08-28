@@ -1,4 +1,9 @@
-import pandas as pd
-df = pd.read_csv("file.csv")
-df.to_excel("file.xlsx")
-print(df)
+def itl(a):
+  for i in a:
+      yield i
+a = [1, 2, 3]
+
+h = itl(a)
+print(next(h))
+print(next(h))
+print(next(h))

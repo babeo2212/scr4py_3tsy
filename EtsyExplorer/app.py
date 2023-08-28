@@ -1,6 +1,14 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from EtsyExplorer.spiders.etsySpider import EtsyspiderSpider
+from EtsyExplorer.helperFunc import fileConverter, picDownloader, mkdir
+import logging
+
+logging.basicConfig(
+    filename="logfile.log", filemode="w", format="%(levelname)s: %(message)s", level=logging.INFO
+)
+
+logger = logging.getLogger(__name__)
 
 def run():
   process = CrawlerProcess(settings=get_project_settings())
@@ -11,15 +19,22 @@ def run():
     try:
       numpage = input("Please insert number of page to crawl: ")
       if not numpage or numpage == '0':
-        numpage = 1000000
+        numpage = 1_000_000
       else:
         numpage = int(numpage)
     except ValueError:
       print("Not a valid number.")
     else:
       break
+
+  mkdir()
+  
   process.crawl(EtsyspiderSpider, shopname=shopname, numpage = numpage)
   process.start()
+
+  fileConverter()
+
+  picDownloader()
 
 if __name__ == "__main__":
   run()
