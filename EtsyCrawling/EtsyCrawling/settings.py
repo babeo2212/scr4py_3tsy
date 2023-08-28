@@ -1,4 +1,4 @@
-# Scrapy settings for EtsyExplorer project
+# Scrapy settings for EtsyCrawling project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "EtsyExplorer"
+BOT_NAME = "EtsyCrawling"
 
-SPIDER_MODULES = ["EtsyExplorer.spiders"]
-NEWSPIDER_MODULE = "EtsyExplorer.spiders"
+SPIDER_MODULES = ["EtsyCrawling.spiders"]
+NEWSPIDER_MODULE = "EtsyCrawling.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "EtsyExplorer (+http://www.yourdomain.com)"
+#USER_AGENT = "EtsyCrawling (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+#DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -45,13 +45,13 @@ DOWNLOAD_DELAY = 3
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "EtsyExplorer.middlewares.EtsyexplorerSpiderMiddleware": 543,
+#    "EtsyCrawling.middlewares.EtsycrawlingSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "EtsyExplorer.middlewares.EtsyexplorerDownloaderMiddleware": 543,
+#    "EtsyCrawling.middlewares.EtsycrawlingDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ DOWNLOAD_DELAY = 3
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "EtsyExplorer.pipelines.EtsyexplorerPipeline": 300,
+#    "EtsyCrawling.pipelines.EtsycrawlingPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
