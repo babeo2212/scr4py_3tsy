@@ -400,3 +400,6 @@ scrapyEtsy_venv/*
 */Images_Folder/*
 */*.csv
 */webScraping_etsy.py
+*/dist/*
+*/build/*
+*/*.spec
