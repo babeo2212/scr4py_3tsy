@@ -35,7 +35,12 @@ def downLoadImage(*argv):
 		headers = {
 			'User-Agent': "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/116.0"}
 		time.sleep(3)
-		img_bytes = requests.get(imgUrl, headers=headers).content
+		response = requests.get(imgUrl, headers=headers)
+		while response.status_code != 200:
+			logger.debug(f"GET response not successful . CODE: {response.status_code}")
+			time.sleep(60)
+			response = requests.get(imgUrl, headers=headers)
+		img_bytes = response.content
 		
 		# <TÊN TỰ ĐẶT>_YYYYMMDD_<ID>_<TÊN CỦA SẢN PHẨM>
 		img_name = f"{userCustomName}_{dateName}_{img_id}_{img_name}.jpg"
