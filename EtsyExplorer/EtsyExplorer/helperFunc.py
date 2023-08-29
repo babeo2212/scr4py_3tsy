@@ -57,6 +57,7 @@ def fileConverter(filename):
 	if df.empty:
 		logger.debug("File is Empty . Can not convert to exel.")
 		return
+	df.to_csv(f"{filename}.csv")
 	df.to_excel(f"{filename}.xlsx")
 
 @loggerDecor
