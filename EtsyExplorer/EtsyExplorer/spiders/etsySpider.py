@@ -21,7 +21,7 @@ def mapping(int):
 class EtsyspiderSpider(scrapy.Spider):
 	name = "etsySpider"
 	allowed_domains = ["www.etsy.com"]
-	user_agent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/114.0"
+	user_agent = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
 	countPage = 0
 	countItem = 0
 	def start_requests(self):
