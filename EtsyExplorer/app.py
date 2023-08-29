@@ -1,14 +1,16 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from EtsyExplorer.spiders.etsySpider import EtsyspiderSpider
-from EtsyExplorer.helperFunc import fileConverter, picDownloader, mkdir
+from EtsyExplorer.helperFunc import fileConverter, picDownloaderConcurrency, mkdir
 import logging
 
 logging.basicConfig(
-    filename="logfile.log", filemode="w", format="%(levelname)s: %(message)s", level=logging.INFO
+    filename="logfile.log", format="%(levelname)s: %(message)s", level=logging.DEBUG
 )
+# handler = logging.FileHandler("logfile.log", 'w+')
 
 logger = logging.getLogger(__name__)
+# logger.addHandler(handler)
 
 def run():
   process = CrawlerProcess(settings=get_project_settings())
@@ -34,7 +36,10 @@ def run():
 
   fileConverter()
 
-  picDownloader()
+  # picDownloader()
 
 if __name__ == "__main__":
+  # BaileyDesignedCo
+  # MayaPrintDesign
+  # OzzieDigitalArt
   run()

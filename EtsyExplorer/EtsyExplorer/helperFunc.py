@@ -6,7 +6,7 @@ import concurrent.futures
 import time
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 def mkdir():
 	try:
@@ -21,11 +21,13 @@ def downLoadImage(imgUrl):
 	with open(img_name, "wb") as wi:
 		wi.write(img_bytes)
 
-
 def fileConverter():
-  logger.info("Starting convert to file excel.")
-  df = pd.read_csv("file.csv")
-  df.to_excel("file.xlsx")
+	logger.debug("Starting convert to file excel.")
+	df = pd.read_csv("file.csv")
+	if df.empty:
+		logger.debug("File is Empty . Can not convert to exel.")
+		return
+	df.to_excel("file.xlsx")
 
 def picDownloaderConcurrency(data):
   with concurrent.futures.ThreadPoolExecutor() as executor:

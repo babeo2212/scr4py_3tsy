@@ -2,7 +2,7 @@ import scrapy
 import logging
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 class EtsyspiderSpider(scrapy.Spider):
 	name = "etsySpider"
@@ -23,14 +23,30 @@ class EtsyspiderSpider(scrapy.Spider):
 		logger.info(f"{'>' *27} Scrape page number: {self.countPage} {'<' * 27}.")
 		if self.countPage > self.numpage:
 			return
-		items = response.xpath("//div[@class=' wt-animated']/div[3]/div/div/div")
+		# //div[@class='responsive-listing-grid wt-grid wt-grid--block wt-justify-content-flex-start wt-mb-xs-3 appears-ready']
+		# This is for BaileyDesignedCo and OzzieDigitalArt
+		# #//div[@class="" and @data-listings-container=""]/div/div/div
+		#################################################################################################################
+		# Change log
+		# Replace xpath from "//div[@class=' wt-animated']/div[3]/div/div/div"
+		items = response.xpath("//div[contains(@class, 'responsive-listing-grid')]/div")
 		for item in items:
 			url = item.xpath(".//a/@href").get()
 			yield scrapy.Request(url=url, headers={"User-Agent": self.user_agent}, meta={"url": url}, callback=self.parse_item)
-		
-		nextPage = response.xpath("(//a[@class='wt-action-group__item wt-btn wt-btn--icon '])[1]/@href").get()
-		if nextPage:
+		#################################################################################################################
+		# Change log
+		# Replace xpath from "(//a[@class='wt-action-group__item wt-btn wt-btn--icon '])[1]/@href"
+		# -> pick last li a[contains(@class, 'wt-is-disabled')]
+		pages = response.xpath("//div[@class='wt-show-xl']/nav[@aria-label='Pagination of listings']/ul/li")
+		# Get the last elem
+		lastElem = pages[-1]
+		# If current page is the last page, the spider will stop
+		isLastPage = lastElem.xpath(".//a[contains(@class, 'wt-is-disabled')]")
+		if not isLastPage:
+			nextPage = lastElem.xpath(".//a/@href").get()
 			yield scrapy.Request(url=nextPage, headers={"User-Agent": self.user_agent}, callback=self.parse)
+		else:
+			return
 
 	def parse_item(self, response):
 		self.countItem += 1
