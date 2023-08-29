@@ -37,7 +37,7 @@ def downLoadImage(*argv):
 		time.sleep(3)
 		response = requests.get(imgUrl, headers=headers)
 		while response.status_code != 200:
-			logger.debug(f"GET response not {response.status_code}")
+			logger.debug(f"GET response not successful . CODE: {response.status_code}")
 			time.sleep(60)
 			response = requests.get(imgUrl, headers=headers)
 		img_bytes = response.content
