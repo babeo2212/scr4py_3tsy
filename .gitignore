@@ -397,3 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 scrapyEtsy_venv/*
+*/Images_Folder/*
+*/*.csv
+*/webScraping_etsy.py

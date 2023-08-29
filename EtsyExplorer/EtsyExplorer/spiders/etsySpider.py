@@ -2,7 +2,21 @@ import scrapy
 import logging
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
+
+def mapping(int):
+	mapDict = {
+		1: "A", 2: "B", 3: "C", 4: "D",
+		5: "E",	6: "F", 7: "G",	8: "H",
+		9: "I", 10: "J", 11: "K", 12: "L",
+		13: "M", 14: "N", 15: "O", 16: "P",
+		17: "Q", 18: "R", 19: "S", 20: "T" 
+	}
+	try:
+		res = mapDict[int]
+	except KeyError:
+		res = "Z"
+	return res
 
 class EtsyspiderSpider(scrapy.Spider):
 	name = "etsySpider"
@@ -70,11 +84,13 @@ class EtsyspiderSpider(scrapy.Spider):
 			tagname = tag.xpath("normalize-space(.//a/h3/text())").get()
 			tagnames += (tagname + ",")
 		tagnames = tagnames[:-1]
-
+		countImg = 0
 		for img in imgUrlList:
+			countImg += 1
 			yield {
-				"id": self.countItem,
+				"id": f"{self.countItem}{mapping(countImg)}",
 				"name": name,
 				"tags": tagnames,
-				"img_url": img
+				"img_url": img,
+				"concatidnameurl": f"{self.countItem}{mapping(countImg)}*{name}*{img}"
 			}
