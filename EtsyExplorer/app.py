@@ -35,9 +35,9 @@ def run():
   # Make image folder
   mkdir()
   # Starting scrawling session
-  process = CrawlerProcess(settings=get_project_settings())
-  process.crawl(EtsyspiderSpider, shopname=shopname, numpage = numpage)
-  process.start()
+  with CrawlerProcess(settings=get_project_settings()) as process:
+    process.crawl(EtsyspiderSpider, shopname=shopname, numpage = numpage)
+    process.start()
   # Convert csv file into excel
   fileConverter(filename=shopname)
   # userCustomName = "shopABC"
