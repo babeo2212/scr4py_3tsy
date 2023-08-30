@@ -59,4 +59,8 @@ def run():
     return
 
 if __name__ == "__main__":
-  run()
+  try:
+    run()
+  except Exception as e:
+    print(e)
+    _ = input()

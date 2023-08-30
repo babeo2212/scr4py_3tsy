@@ -29,7 +29,7 @@ def sendEmail(recipient=None, message=None):
   """
   
   msg.attach(MIMEText(message))
-  img = MIMEImage(open("meme.jpg", "rb").read())
+  img = MIMEImage(open("EtsyExplorer/img/meme.jpg", "rb").read())
   img.add_header("Content-Disposition", "attachment; filename='image.jpg'")
   msg.attach(img)
   logger.info("Sending Email.")
@@ -40,5 +40,5 @@ def sendEmail(recipient=None, message=None):
     mailServer.sendmail(userEmail, recipient, msg.as_string())
   logger.info("Email sent.")
 
-sendEmail("nguyenthuy221210@gmail.com")
+# sendEmail("nguyenthuy221210@gmail.com")
 # print(os.getcwd())
