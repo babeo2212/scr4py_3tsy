@@ -403,3 +403,4 @@ scrapyEtsy_venv/*
 */dist/*
 */build/*
 */*.spec
+*/*.xlsx

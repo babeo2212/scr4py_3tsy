@@ -1,3 +1,4 @@
 Scrapy
 pandas
+openpyxl
 Twisted==22.10.0
