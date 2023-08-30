@@ -400,3 +400,4 @@ scrapyEtsy_venv/*
 */Images_Folder/*
 */*.csv
 */webScraping_etsy.py
+*/*.xlsx
