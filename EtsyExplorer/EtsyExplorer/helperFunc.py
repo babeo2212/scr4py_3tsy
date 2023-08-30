@@ -64,7 +64,7 @@ def fileConverter(filename):
 def imgDownloaderConcurrency(userCustomName):
 	# Get currdir
 	currDir = os.getcwd()
-	filePath = os.path.join(currDir, "filetest.csv")
+	filePath = os.path.join(currDir, "file.csv")
 	
 	# Read in chunks to minimize memory
 	df = pd.read_csv(
