@@ -404,3 +404,8 @@ scrapyEtsy_venv/*
 */build/*
 */*.spec
 */*.xlsx
+*/*.jpeg
+*/*.jpg
+*/*.png
+*/!meme.jpg
+!meme.jpg
